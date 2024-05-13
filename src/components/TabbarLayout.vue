@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import router from '@/router';
+import { useTabbarStore } from '@/stores/tabbar';
 import { ref, watch } from 'vue';
+
+const tabbarStore = useTabbarStore();
 
 const tabbarItem = [
     {
@@ -9,16 +12,25 @@ const tabbarItem = [
         to: '/home',
     },
     {
-        icon: 'list-switch',
-        title: '分类',
-        to: '/category',
+        icon: 'friends-o',
+        title: '我的',
+        to: '/personal'
     }
 ]
+const noVisPath = ['/search'];
 
 const active = ref(0);
 
 watch(active, (val) => {
     router.push(tabbarItem[val].to);
+})
+
+watch(() => router.currentRoute.value.fullPath, (path: string) => {
+    if (noVisPath.indexOf(path) !== -1) {
+        tabbarStore.visable = false;
+    } else {
+        tabbarStore.visable = true;
+    }
 })
 
 </script>
@@ -30,8 +42,9 @@ watch(active, (val) => {
         <van-tabbar-item icon="friends-o">标签</van-tabbar-item>
         <van-tabbar-item icon="setting-o">标签</van-tabbar-item>
     </van-tabbar> -->
-    <van-tabbar v-model="active">
-        <van-tabbar-item v-for="tabbar in tabbarItem" :icon="tabbar.icon">{{ tabbar.title }}</van-tabbar-item>
+    <van-tabbar v-model="active" v-show="tabbarStore.visable">
+        <van-tabbar-item v-for="(tabbar, index) in tabbarItem" :icon="tabbar.icon" :key="index">{{ tabbar.title
+            }}</van-tabbar-item>
     </van-tabbar>
 </template>
 
