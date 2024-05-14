@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import router from '@/router';
 import { useTabbarStore } from '@/stores/tabbar';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 const tabbarStore = useTabbarStore();
 
@@ -26,6 +26,15 @@ watch(active, (val) => {
 })
 
 watch(() => router.currentRoute.value.fullPath, (path: string) => {
+    if (noVisPath.indexOf(path) !== -1) {
+        tabbarStore.visable = false;
+    } else {
+        tabbarStore.visable = true;
+    }
+})
+
+onMounted(() => {
+    const path = router.currentRoute.value.fullPath;
     if (noVisPath.indexOf(path) !== -1) {
         tabbarStore.visable = false;
     } else {

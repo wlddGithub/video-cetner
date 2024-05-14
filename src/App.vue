@@ -7,5 +7,8 @@ import { RouterView } from 'vue-router'
 </template>
 
 <style>
-
+html,
+body {
+  touch-action: manipulation;
+}
 </style>
