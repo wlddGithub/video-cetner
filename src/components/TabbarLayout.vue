@@ -17,7 +17,7 @@ const tabbarItem = [
         to: '/personal'
     }
 ]
-const noVisPath = ['/search'];
+const noVisPath = ['/search', '/videoDetail'];
 
 const active = ref(0);
 
@@ -26,11 +26,14 @@ watch(active, (val) => {
 })
 
 watch(() => router.currentRoute.value.fullPath, (path: string) => {
-    if (noVisPath.indexOf(path) !== -1) {
-        tabbarStore.visable = false;
-    } else {
-        tabbarStore.visable = true;
+    let flag = true;
+    for (let i = 0; i < noVisPath.length; i++) {
+        if (path.includes(noVisPath[i])) {
+            flag = false;
+            break;
+        }
     }
+    tabbarStore.visable = flag;
 })
 
 onMounted(() => {

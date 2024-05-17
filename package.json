@@ -13,6 +13,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "artplayer": "^5.1.1",
+    "axios": "^1.6.8",
     "pinia": "^2.1.7",
     "vant": "^4.9.0",
     "vue": "^3.4.21",

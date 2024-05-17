@@ -3,6 +3,7 @@ import IndexView from '../views/IndexView.vue'
 import HomeView from '../views/HomeView.vue'
 import PersonalView from '../views/PersonalView.vue'
 import SearchView from '../views/SearchView.vue'
+import VideoDetailView from '@/views/VideoDetailView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
           path: '/search',
           name: 'Search',
           component: SearchView
+        },
+        {
+          path: '/videoDetail',
+          name: 'VideoDetail',
+          component: VideoDetailView
         }
       ]
     }

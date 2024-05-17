@@ -2,7 +2,22 @@
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-import { Tabbar, TabbarItem, Search, NavBar, Tab, Tabs, Icon, Divider } from 'vant'
+import {
+  Tabbar,
+  TabbarItem,
+  Search,
+  NavBar,
+  Tab,
+  Tabs,
+  Icon,
+  Divider,
+  Space,
+  Image,
+  Col,
+  Row,
+  ConfigProvider,
+  TextEllipsis
+} from 'vant'
 
 import 'vant/lib/index.css'
 
@@ -22,5 +37,10 @@ app.use(Tab)
 app.use(Tabs)
 app.use(Icon)
 app.use(Divider)
+app.use(Space)
+app.use(Image)
+app.use(Row)
+app.use(Col)
+app.use(TextEllipsis)
 
 app.mount('#app')
